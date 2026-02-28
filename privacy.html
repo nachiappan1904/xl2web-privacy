@@ -61,7 +61,7 @@ This is your original privacy page with minimal updates:
     /* PRIVACY HERO LOGO */
     /* PRIVACY HERO LOGO (smaller + clean) */
 .privacyHeroLogo{
-  width: min(280px, 70vw);  /* was too big */
+  width: min(160px, 70vw);  /* was too big */
   height: auto;
   display: block;
   margin: 10px auto 16px;
@@ -86,10 +86,22 @@ This is your original privacy page with minimal updates:
       color: #188330;
     }
 
-    /* 2 → lightning gold */
-    .brandText .two {
-      color: #fed411;
-    }
+   /* 2 → lightning gold */
+    /* Lightning glow hover on the "2" */
+.brandText .two{
+  position: relative;
+  color:#fed411;
+  transition: filter .18s ease, text-shadow .18s ease, transform .18s ease;
+}
+
+.brandText:hover .two{
+  text-shadow:
+    0 0 6px rgba(245,158,11,.55),
+    0 0 16px rgba(245,158,11,.35),
+    0 0 28px rgba(245,158,11,.22);
+  filter: drop-shadow(0 0 10px rgba(245,158,11,.35));
+  transform: translateY(-.5px);
+}
 
     /* Web → blue */
     .brandText .web {

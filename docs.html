@@ -102,9 +102,21 @@ Privacy link points to /privacy.html
     }
 
     /* 2 → lightning gold */
-    .brandText .two {
-      color: #fed411;
-    }
+    /* Lightning glow hover on the "2" */
+.brandText .two{
+  position: relative;
+  color:#fed411;
+  transition: filter .18s ease, text-shadow .18s ease, transform .18s ease;
+}
+
+.brandText:hover .two{
+  text-shadow:
+    0 0 6px rgba(245,158,11,.55),
+    0 0 16px rgba(245,158,11,.35),
+    0 0 28px rgba(245,158,11,.22);
+  filter: drop-shadow(0 0 10px rgba(245,158,11,.35));
+  transform: translateY(-.5px);
+}
 
     /* Web → blue */
     .brandText .web {
