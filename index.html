@@ -1,153 +1,511 @@
-<!DOCTYPE html>
+<!-- =========================
+index.html (HOME PAGE)
+Upload this as your repo root index.html
+Privacy is now a separate page: /privacy.html
+========================= -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XL2Web – Excel to Web Form Autofill | Privacy Policy</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>XL2Web – Auto Fill Web Forms from Excel</title>
+  <meta name="description" content="Automatically fill web forms from Excel or CSV. Save time on repetitive data entry with XL2Web Chrome extension. Fast, accurate, and easy." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://xl2web.com/" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="XL2Web – Auto Fill Web Forms from Excel" />
+  <meta property="og:description" content="Automatically fill web forms from Excel or CSV. Configure once and fill multi-page forms faster." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://xl2web.com/" />
+  <!-- Optional OG image: put file at /assets/og-xl2web.png -->
+  <meta property="og:image" content="https://xl2web.com/assets/og-xl2web.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="XL2Web – Auto Fill Web Forms from Excel" />
+  <meta name="twitter:description" content="Automatically fill web forms from Excel or CSV. Configure once and fill multi-page forms faster." />
+  <meta name="twitter:image" content="https://xl2web.com/assets/og-xl2web.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"XL2Web",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Chrome",
+    "description":"Chrome extension that auto-fills web forms from Excel or CSV. Configure pages, map fields, and fill multi-page forms faster.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "url":"https://xl2web.com/"
+  }
+  </script>
 
   <style>
-    :root {
-      --primary: #2563eb;
-      --accent: #10b981;
-      --text: #111827;
-      --muted: #6b7280;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --border: #e5e7eb;
+    :root{
+      --bg:#0b0f19;
+      --card:#111827;
+      --card2:#0f172a;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --brand:#60a5fa;
+      --brand2:#34d399;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 20px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
     }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.25), transparent 60%),
+                  radial-gradient(900px 500px at 100% 0%, rgba(52,211,153,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(11,15,25,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(96,165,250,1), rgba(52,211,153,1));
+      box-shadow: 0 10px 25px rgba(96,165,250,.25);
+    }
+    .navlinks{display:flex; gap:18px; align-items:center;}
+    .navlinks a{color:var(--muted); font-weight:700; font-size:14px;}
+    .navlinks a:hover{color:var(--text);}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      font-weight:800;
+      font-size:14px;
+      gap:8px;
+      cursor:pointer;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:hover{background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16);}
+    .btn:active{transform: translateY(1px);}
+    .btn.primary{
+      border-color: rgba(96,165,250,.38);
+      background: linear-gradient(180deg, rgba(96,165,250,.22), rgba(96,165,250,.10));
+      box-shadow: 0 16px 35px rgba(96,165,250,.15);
+    }
+    .btn.secondary{
+      border-color: rgba(52,211,153,.32);
+      background: linear-gradient(180deg, rgba(52,211,153,.16), rgba(52,211,153,.08));
+    }
+    .hero{padding:56px 0 18px;}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr;}
+      .navlinks{display:none;}
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.12;
+      letter-spacing:-.02em;
+    }
+    @media (max-width:520px){ h1{font-size:36px;} }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      max-width:60ch;
+      margin:0 0 18px;
+      font-weight:650;
+    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 14px;}
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px 16px;
+      margin:18px 0 0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+    }
+    .checkItem{display:flex; gap:10px; align-items:flex-start;}
+    .dot{
+      width:18px; height:18px;
+      border-radius:6px;
+      background: rgba(52,211,153,.15);
+      border:1px solid rgba(52,211,153,.28);
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+    .dot svg{width:12px; height:12px; fill: rgba(52,211,153,1);}
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .demoCard{
+      display:flex; flex-direction:column; gap:12px;
+      background: linear-gradient(180deg, rgba(17,24,39,.8), rgba(15,23,42,.65));
+    }
+    .miniTitle{color:var(--muted); font-weight:900; font-size:12px; letter-spacing:.12em; text-transform:uppercase;}
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .k{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px;
+      min-height:72px;
+    }
+    .k strong{display:block; font-size:22px; letter-spacing:-.02em;}
+    .k span{color:var(--muted); font-size:13px; font-weight:700;}
+    .flow{
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius:14px;
+      padding:12px;
+      background: rgba(255,255,255,.02);
+    }
+    .flow ul{margin:8px 0 0; padding-left:16px; color:var(--muted); font-weight:700;}
+    .section{padding:26px 0;}
+    .section h2{margin:0 0 10px; font-size:26px; letter-spacing:-.01em;}
+    .section p{color:var(--muted); margin:0 0 14px; font-weight:650;}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width:920px){ .grid3{grid-template-columns:1fr;} }
+    .feat{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      background: rgba(255,255,255,.03);
+    }
+    .feat h3{margin:0 0 6px; font-size:16px;}
+    .feat p{margin:0; color:var(--muted); font-size:14px; font-weight:650;}
+    .how{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    @media (max-width:920px){ .how{grid-template-columns:1fr 1fr;} }
+    @media (max-width:520px){ .how{grid-template-columns:1fr;} }
+    .step{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:14px;
+      background: rgba(255,255,255,.03);
+      min-height:112px;
+    }
+    .step .num{
+      width:34px;height:34px;border-radius:12px;
+      background: rgba(96,165,250,.12);
+      border:1px solid rgba(96,165,250,.22);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+    .step h4{margin:0 0 6px;font-size:15px;}
+    .step p{margin:0;color:var(--muted);font-size:13.5px; font-weight:650;}
+    details{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      padding:12px 14px;
+    }
+    summary{cursor:pointer; font-weight:900; list-style:none;}
+    summary::-webkit-details-marker{display:none;}
+    details p{margin:8px 0 0; color:var(--muted); font-weight:650; font-size:14px;}
 
-    body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 40px 20px;
-      line-height: 1.6;
+    .footer{
+      border-top:1px solid var(--border);
+      padding:22px 0;
+      color:var(--muted);
+      font-weight:650;
+      font-size:13px;
     }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: var(--card);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      border: 1px solid var(--border);
-    }
-
-    h1 {
-      margin-top: 0;
-      color: var(--primary);
-      font-size: 32px;
-    }
-
-    h2 {
-      color: var(--primary);
-      margin-top: 32px;
-    }
-
-    p {
-      margin: 12px 0;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin: 6px 0;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #eef2ff;
-      color: var(--primary);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    .footer {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .highlight {
-      color: var(--accent);
-      font-weight: 600;
-    }
+    .footGrid{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;}
+    .footGrid a{color:var(--muted); text-decoration:underline; text-underline-offset:3px;}
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="badge">Privacy Policy</div>
-    <h1>XL2Web – Excel to Web Form Autofill</h1>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="/">
+          <span class="logo" aria-hidden="true"></span>
+          <span>XL2Web</span>
+        </a>
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a href="/docs.html">Docs</a>
+          <a href="/privacy.html">Privacy</a>
+        </nav>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="/docs.html">Documentation</a>
+          <!-- Replace with your real Chrome Web Store listing URL when available -->
+          <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add to Chrome</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <p><strong>Effective Date:</strong> February 2026</p>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <div class="pill">Excel / CSV → Web forms • No code</div>
+            <h1>Auto-Fill Web Forms from Excel — In Seconds</h1>
+            <p class="sub">
+              XL2Web reads your Excel or CSV data and fills multi-page web forms automatically.
+              Configure once, reuse across rows, and stop repetitive typing.
+            </p>
+            <div class="ctaRow">
+              <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to Chrome</a>
+              <a class="btn secondary" href="/docs.html">View Documentation</a>
+            </div>
 
-    <p>
-      XL2Web – Excel to Web Form Autofill ("XL2Web", "we", "our") is designed to help users
-      automatically fill web forms using data they provide locally.
-      Your privacy is important to us.
-    </p>
+            <div class="checks" aria-label="Highlights">
+              <div class="checkItem">
+                <span class="dot" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Works with most web forms
+              </div>
+              <div class="checkItem">
+                <span class="dot" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Multi-page flows supported
+              </div>
+              <div class="checkItem">
+                <span class="dot" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Excel & CSV compatible
+              </div>
+              <div class="checkItem">
+                <span class="dot" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Import / export setups
+              </div>
+            </div>
+          </div>
 
-    <h2>🔒 Data Collection</h2>
-    <p>
-      <strong>XL2Web does not collect, transmit, store on external servers, or sell any personal data.</strong>
-    </p>
-    <p>
-      All data processed by the extension — including Excel/CSV files, field mappings,
-      and autofill configurations — remains locally in the user’s browser.
-    </p>
+          <aside class="card demoCard" aria-label="Preview">
+            <div class="miniTitle">Quick preview</div>
+            <div class="kpi">
+              <div class="k">
+                <strong>1×</strong>
+                <span>Setup per website</span>
+              </div>
+              <div class="k">
+                <strong>∞</strong>
+                <span>Reuse across rows</span>
+              </div>
+              <div class="k">
+                <strong>Auto</strong>
+                <span>Fill on navigation</span>
+              </div>
+              <div class="k">
+                <strong>Steps</strong>
+                <span>Wait + button actions</span>
+              </div>
+            </div>
+            <div class="flow">
+              <div class="miniTitle">Typical flow</div>
+              <ul>
+                <li>Upload Excel / CSV</li>
+                <li>Select fields on the page</li>
+                <li>Click Refresh to load headers</li>
+                <li>Fill this page or enable Auto-fill</li>
+              </ul>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <span class="pill">Text</span>
+              <span class="pill">Dropdown</span>
+              <span class="pill">Checkbox</span>
+              <span class="pill">Button</span>
+              <span class="pill">Wait</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-    <h2>📁 Local Processing</h2>
-    <p>XL2Web operates entirely on your device and:</p>
-    <ul>
-      <li>Reads Excel (XLSX) or CSV files selected by the user</li>
-      <li>Stores configuration locally using Chrome storage and IndexedDB</li>
-      <li>Fills forms only when the user explicitly triggers the action</li>
-      <li>Optionally supports Auto-fill on navigation when enabled by the user</li>
-    </ul>
+    <section id="features" class="section">
+      <div class="wrap">
+        <h2>Built for real workflows</h2>
+        <p>Fill web forms faster with a simple click-to-configure setup. Handles multi-step pages, dynamic fields, and repeatable submissions.</p>
 
-    <p>
-      <span class="highlight">No user data is transmitted to external servers.</span>
-    </p>
+        <div class="grid3">
+          <div class="feat">
+            <h3>Excel & CSV form filling</h3>
+            <p>Upload .xlsx or .csv and map data to form fields. Reuse the same mapping across multiple rows.</p>
+          </div>
+          <div class="feat">
+            <h3>Multi-page automation</h3>
+            <p>Configure multiple pages for a website and fill step-by-step workflows without repeating setup.</p>
+          </div>
+          <div class="feat">
+            <h3>Click-to-capture selectors</h3>
+            <p>Select fields by clicking on the page. XL2Web stores selectors so you can fill reliably next time.</p>
+          </div>
 
-    <h2>🌐 Website Access</h2>
-    <p>
-      XL2Web requires access to websites in order to detect and fill form fields chosen by the user,
-      including forms inside embedded iframes.
-    </p>
-    <p>
-      This access is used <strong>solely for form autofill functionality</strong> and not for
-      tracking, advertising, analytics, or profiling.
-    </p>
+          <div class="feat">
+            <h3>Auto-fill on navigation</h3>
+            <p>Enable auto-fill and XL2Web populates forms as you navigate through the workflow.</p>
+          </div>
+          <div class="feat">
+            <h3>Wait & button control</h3>
+            <p>Handle dynamic sites using wait steps and button actions with configurable delays.</p>
+          </div>
+          <div class="feat">
+            <h3>Import / export setups</h3>
+            <p>Save your configuration as JSON. Reuse it later or share with a teammate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>🤝 Third-Party Sharing</h2>
-    <p>
-      We do <strong>not</strong> share, sell, or transmit user data to any third parties.
-    </p>
+    <section id="how" class="section">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <p>Get started quickly. Configure once, then fill as many rows as you need.</p>
 
-    <h2>🔐 Security</h2>
-    <p>
-      All processing occurs locally within the browser environment under the user’s control.
-    </p>
+        <div class="how" aria-label="Steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h4>Install XL2Web</h4>
+            <p>Add the extension from the Chrome Web Store and pin it for quick access.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h4>Upload your spreadsheet</h4>
+            <p>Load Excel or CSV, set sheet name (if needed), header row, and row number.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h4>Select form fields</h4>
+            <p>Click fields on the website to capture selectors. Configure actions like dropdowns, buttons, and waits.</p>
+          </div>
+          <div class="step">
+            <div class="num">4</div>
+            <h4>Fill instantly</h4>
+            <p>Click “Fill this page” or enable Auto-fill to populate pages as you navigate.</p>
+          </div>
+        </div>
 
-    <h2>📩 Contact</h2>
-    <p>
-      If you have any questions about this Privacy Policy, please contact:
-    </p>
-    <p><strong>Email:</strong> contact@xl2web.com</p>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to Chrome</a>
+          <a class="btn" href="/docs.html">Read the docs</a>
+          <a class="btn" href="/privacy.html">Privacy</a>
+        </div>
+      </div>
+    </section>
 
-    <div class="footer">
-      © 2026 XL2Web – Excel to Web Form Autofill
+    <section id="faq" class="section">
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <p>Quick answers to common questions.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <details>
+            <summary>Does XL2Web work on any website?</summary>
+            <p>XL2Web works with most standard web forms. Highly dynamic pages may require wait steps or re-selecting fields if the site changes.</p>
+          </details>
+          <details>
+            <summary>Is my spreadsheet uploaded anywhere?</summary>
+            <p>Your spreadsheet is processed in your browser. XL2Web does not upload your file to a server by default.</p>
+          </details>
+          <details>
+            <summary>Can it handle multi-page forms?</summary>
+            <p>Yes. Configure multiple pages for a website and fill them step-by-step using manual fill or Auto-fill on navigation.</p>
+          </details>
+          <details>
+            <summary>Do I need coding knowledge?</summary>
+            <p>No. You select fields by clicking on the page and choose mappings from dropdowns.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center;">
+          <div>
+            <div class="miniTitle">Ready to stop manual typing?</div>
+            <div style="font-size:20px; font-weight:900; margin-top:6px;">Automate your spreadsheet-to-form workflow with XL2Web.</div>
+            <div style="color:var(--muted); font-weight:650; margin-top:6px;">Install in seconds. Configure once. Fill faster.</div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to Chrome</a>
+            <a class="btn" href="/docs.html">Documentation</a>
+            <a class="btn" href="/privacy.html">Privacy</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="footer">
+    <div class="wrap">
+      <div class="footGrid">
+        <div>© <span id="y"></span> XL2Web</div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="/docs.html">Docs</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="mailto:contact@xl2web.com">Support</a>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
