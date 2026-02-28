@@ -125,10 +125,13 @@ Privacy is now a separate page: /privacy.html
     }
 
     /* ===== XL2Web brand wordmark ===== */
-    .brandText {
-      font-weight: 800;
-      letter-spacing: .2px;
-    }
+    .brandText{
+  font-weight:900;
+  letter-spacing:.3px;
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+}
 
     /* XL → green (from logo) */
        .brandText .xl {
@@ -136,14 +139,121 @@ Privacy is now a separate page: /privacy.html
     }
 
     /* 2 → lightning gold */
-    .brandText .two {
-      color: #fed411;
-    }
+    /* Lightning glow hover on the "2" */
+.brandText .two{
+  position: relative;
+  color:#f59e0b;
+  transition: filter .18s ease, text-shadow .18s ease, transform .18s ease;
+}
+
+.brandText:hover .two{
+  text-shadow:
+    0 0 6px rgba(245,158,11,.55),
+    0 0 16px rgba(245,158,11,.35),
+    0 0 28px rgba(245,158,11,.22);
+  filter: drop-shadow(0 0 10px rgba(245,158,11,.35));
+  transform: translateY(-.5px);
+}
 
     /* Web → blue */
     .brandText .web {
       color: #0395fd;
     }
+    /* Sticky install bar */
+.stickyInstall{
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+  pointer-events: none; /* only inner receives clicks */
+}
+.stickyInner{
+  pointer-events: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(11,15,25,.78);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 45px rgba(0,0,0,.45);
+}
+.stickyLeft{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  min-width: 0;
+}
+.stickyLogo{
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.16);
+}
+.stickyTitle{
+  display:flex;
+  gap: 10px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.stickyTag{
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(229,231,235,.70);
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.stickySub{
+  font-size: 13px;
+  color: rgba(229,231,235,.70);
+  font-weight: 650;
+  max-width: 68ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stickyBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  border: 1px solid rgba(96,165,250,.38);
+  background: linear-gradient(180deg, rgba(96,165,250,.22), rgba(96,165,250,.10));
+  color: #e5e7eb;
+  white-space: nowrap;
+}
+.stickyBtn:hover{
+  border-color: rgba(96,165,250,.52);
+}
+.stickyClose{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(229,231,235,.85);
+  border-radius: 12px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+.stickyClose:hover{
+  background: rgba(255,255,255,.06);
+}
+@media (max-width: 720px){
+  .stickySub{display:none;}
+}
+@media (max-width: 520px){
+  .stickyInner{gap:10px; padding: 10px;}
+  .stickyTag{display:none;}
+}
 
     .navlinks {
       display: flex;
@@ -756,7 +866,7 @@ Privacy is now a separate page: /privacy.html
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
           <a href="/docs.html">Docs</a>
           <a href="/privacy.html">Privacy</a>
-          <a href="mailto:contact@xl2web.com">Support</a>
+          <a href="mailto:contact@xl2web.com">contact@xl2web.com</a>
         </div>
       </div>
     </div>
@@ -765,6 +875,43 @@ Privacy is now a separate page: /privacy.html
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
+  <!-- Sticky install bar -->
+<div class="stickyInstall" id="stickyInstall" role="region" aria-label="Install XL2Web">
+  <div class="stickyInner">
+    <div class="stickyLeft">
+      <img class="stickyLogo" src="/assets/og-xl2web.png?v=1" alt="XL2Web" width="28" height="28" />
+      <div>
+        <div class="stickyTitle">
+          <span class="brandText">
+            <span class="xl">XL</span><span class="two">2</span><span class="web">Web</span>
+          </span>
+          <span class="stickyTag">Chrome extension</span>
+        </div>
+        <div class="stickySub">Auto-fill web forms from Excel/CSV. Configure once, reuse across rows.</div>
+      </div>
+    </div>
+
+    <!-- Replace href with your real Chrome Web Store listing URL when live -->
+    <a class="stickyBtn" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">
+      Add to Chrome
+    </a>
+
+    <button class="stickyClose" type="button" aria-label="Dismiss" onclick="document.getElementById('stickyInstall').style.display='none'; localStorage.setItem('xl2webStickyDismissed','1');">
+      ✕
+    </button>
+  </div>
+</div>
+
+<script>
+  (function(){
+    try{
+      if(localStorage.getItem('xl2webStickyDismissed') === '1'){
+        var el = document.getElementById('stickyInstall');
+        if(el) el.style.display = 'none';
+      }
+    }catch(e){}
+  })();
+</script>
 </body>
 
 </html>

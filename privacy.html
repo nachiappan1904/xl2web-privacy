@@ -59,23 +59,27 @@ This is your original privacy page with minimal updates:
     }
 
     /* PRIVACY HERO LOGO */
-    .privacyHeroLogo {
-      width: min(420px, 92vw);
-      height: auto;
-      display: block;
-      margin: 10px auto 18px;
-      border-radius: 22px;
-      object-fit: cover;
-      background: #fff;
-      border: 1px solid rgba(17, 24, 39, .12);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, .12);
-    }
+    /* PRIVACY HERO LOGO (smaller + clean) */
+.privacyHeroLogo{
+  width: min(280px, 70vw);  /* was too big */
+  height: auto;
+  display: block;
+  margin: 10px auto 16px;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #fff;
+  border: 1px solid rgba(17,24,39,.10);
+  box-shadow: 0 14px 34px rgba(0,0,0,.10);
+}
 
     /* ===== XL2Web brand wordmark ===== */
-    .brandText {
-      font-weight: 800;
-      letter-spacing: .2px;
-    }
+    .brandText{
+  font-weight:900;
+  letter-spacing:.3px;
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+}
 
     /* XL → green (from logo) */
         .brandText .xl {
