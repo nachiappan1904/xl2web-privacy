@@ -39,24 +39,37 @@ This is your original privacy page with minimal updates:
       line-height: 1.6;
     }
 
-    .topbar {
-      max-width: 900px;
-      margin: 0 auto 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+    /* Small navbar logo (crops messy OG edges) */
+.navLogo{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  display:block;
+  object-fit:cover;              /* important */
+  border:1px solid rgba(17,24,39,.10);
+  background:#fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.10);
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      color: var(--text);
-      text-decoration: none;
-    }
+/* topbar spacing */
+.topbar{
+  max-width: 1100px;             /* slightly wider looks nicer */
+  margin: 0 auto 14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* make brand area align well */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  text-decoration:none;
+}
 
     /* PRIVACY HERO LOGO */
     /* PRIVACY HERO LOGO (smaller + clean) */
@@ -71,6 +84,17 @@ This is your original privacy page with minimal updates:
   border: 1px solid rgba(17,24,39,.10);
   box-shadow: 0 14px 34px rgba(0,0,0,.10);
 }
+
+.badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
 
     /* ===== XL2Web brand wordmark ===== */
     .brandText{
@@ -156,17 +180,6 @@ This is your original privacy page with minimal updates:
       margin: 6px 0;
     }
 
-    .badge {
-      display: inline-block;
-      background: #eef2ff;
-      color: var(--primary);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
     .footer {
       margin-top: 40px;
       padding-top: 20px;
@@ -184,12 +197,12 @@ This is your original privacy page with minimal updates:
 
 <body>
   <div class="topbar">
-    <a class="brand" href="/">
-      <img class="privacyHeroLogo" src="/assets/og-xl2web.png?v=1" alt="XL2Web" />
-      <span class="brandText">
-        <span class="xl">XL</span><span class="two">2</span><span class="web">Web</span>
-      </span>
-    </a>
+   <a class="brand" href="/">
+  <img class="navLogo" src="/assets/og-xl2web.png?v=3" alt="XL2Web" width="28" height="28">
+  <span class="brandText">
+    <span class="xl">XL</span><span class="two">2</span><span class="web">Web</span>
+  </span>
+</a>
     <div class="links">
       <a href="/">Home</a>
       <a href="/docs.html">Docs</a>
