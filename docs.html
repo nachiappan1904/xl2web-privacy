@@ -47,12 +47,16 @@ Privacy link points to /privacy.html
       gap:12px;
     }
     .brand{display:flex; align-items:center; gap:10px; font-weight:900;}
-    .logoImg{
-  width:34px;
-  height:34px;
-  border-radius:10px;
+    /* NAV LOGO (docs) */
+.navLogo{
+  width:30px;
+  height:30px;
+  border-radius:9px;
   display:block;
   object-fit:cover;
+  background:#0b0f19;
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
 }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -153,7 +157,7 @@ Privacy link points to /privacy.html
     <div class="wrap">
       <div class="nav">
         <a class="brand" href="/">
-          <img class="logoImg" src="/assets/og-xl2web.png?v=1" alt="XL2Web" />
+          <img class="navLogo" src="/assets/og-xl2web.png?v=1" alt="XL2Web" width="30" height="30" />
           <span>XL2Web</span>
         </a>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">

@@ -56,12 +56,17 @@ This is your original privacy page with minimal updates:
       text-decoration: none;
     }
 
-    .logoImg{
-  width:34px;
-  height:34px;
-  border-radius:10px;
+    /* PRIVACY HERO LOGO */
+.privacyHeroLogo{
+  width:min(420px, 92vw);
+  height:auto;
   display:block;
+  margin: 10px auto 18px;
+  border-radius:22px;
   object-fit:cover;
+  background:#fff;
+  border:1px solid rgba(17,24,39,.12);
+  box-shadow: 0 18px 45px rgba(0,0,0,.12);
 }
 
     .links a {
@@ -141,7 +146,7 @@ This is your original privacy page with minimal updates:
 <body>
   <div class="topbar">
     <a class="brand" href="/">
-      <img class="logoImg" src="/assets/og-xl2web.png?v=1" alt="XL2Web" />
+      <img class="privacyHeroLogo" src="/assets/og-xl2web.png?v=1" alt="XL2Web" />
       <span>XL2Web</span>
     </a>
     <div class="links">
