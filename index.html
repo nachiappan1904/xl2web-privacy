@@ -5,18 +5,21 @@ Privacy is now a separate page: /privacy.html
 ========================= -->
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>XL2Web – Auto Fill Web Forms from Excel</title>
-  <meta name="description" content="Automatically fill web forms from Excel or CSV. Save time on repetitive data entry with XL2Web Chrome extension. Fast, accurate, and easy." />
+  <meta name="description"
+    content="Automatically fill web forms from Excel or CSV. Save time on repetitive data entry with XL2Web Chrome extension. Fast, accurate, and easy." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://xl2web.com/" />
   <link rel="icon" href="/favicon.ico" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="XL2Web – Auto Fill Web Forms from Excel" />
-  <meta property="og:description" content="Automatically fill web forms from Excel or CSV. Configure once and fill multi-page forms faster." />
+  <meta property="og:description"
+    content="Automatically fill web forms from Excel or CSV. Configure once and fill multi-page forms faster." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://xl2web.com/" />
   <!-- Optional OG image: put file at /assets/og-xl2web.png -->
@@ -25,7 +28,8 @@ Privacy is now a separate page: /privacy.html
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="XL2Web – Auto Fill Web Forms from Excel" />
-  <meta name="twitter:description" content="Automatically fill web forms from Excel or CSV. Configure once and fill multi-page forms faster." />
+  <meta name="twitter:description"
+    content="Automatically fill web forms from Excel or CSV. Configure once and fill multi-page forms faster." />
   <meta name="twitter:image" content="https://xl2web.com/assets/og-xl2web.png" />
 
   <script type="application/ld+json">
@@ -42,233 +46,462 @@ Privacy is now a separate page: /privacy.html
   </script>
 
   <style>
-    :root{
-      --bg:#0b0f19;
-      --card:#111827;
-      --card2:#0f172a;
-      --text:#e5e7eb;
-      --muted:#9ca3af;
-      --brand:#60a5fa;
-      --brand2:#34d399;
-      --border:rgba(255,255,255,.10);
-      --shadow: 0 20px 40px rgba(0,0,0,.35);
-      --radius:18px;
-      --max:1100px;
+    :root {
+      --bg: #0b0f19;
+      --card: #111827;
+      --card2: #0f172a;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --brand: #60a5fa;
+      --brand2: #34d399;
+      --border: rgba(255, 255, 255, .10);
+      --shadow: 0 20px 40px rgba(0, 0, 0, .35);
+      --radius: 18px;
+      --max: 1100px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.25), transparent 60%),
-                  radial-gradient(900px 500px at 100% 0%, rgba(52,211,153,.18), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      line-height:1.55;
+
+    * {
+      box-sizing: border-box
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
-    header{
-      position:sticky; top:0; z-index:50;
-      background: rgba(11,15,25,.72);
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(96, 165, 250, .25), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(52, 211, 153, .18), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 15, 25, .72);
       backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:12px;
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 12px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:.2px;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
     }
+
     /* NAV LOGO (home) */
-.navLogo{
-  width:28px;
-  height:28px;
-  border-radius:8px;
-  display:block;
-  object-fit:cover;          /* crops messy background */
-  background:#0b0f19;        /* fallback */
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow: 0 10px 22px rgba(0,0,0,.35);
-}
-    .navlinks{display:flex; gap:18px; align-items:center;}
-    .navlinks a{color:var(--muted); font-weight:700; font-size:14px;}
-    .navlinks a:hover{color:var(--text);}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      font-weight:800;
-      font-size:14px;
-      gap:8px;
-      cursor:pointer;
+    .navLogo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: block;
+      object-fit: cover;
+      /* crops messy background */
+      background: #0b0f19;
+      /* fallback */
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
+    }
+
+    /* ===== XL2Web brand wordmark ===== */
+    .brandText {
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    /* XL → green (from logo) */
+    .brandText .xl {
+      color: #22c55e;
+      /* rich green */
+    }
+
+    /* 2 → lightning gold */
+    .brandText .two {
+      color: #f59e0b;
+      /* golden */
+    }
+
+    /* Web → blue */
+    .brandText .web {
+      color: #3b82f6;
+      /* brand blue */
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .navlinks a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .navlinks a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .04);
+      font-weight: 800;
+      font-size: 14px;
+      gap: 8px;
+      cursor: pointer;
       transition: transform .06s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
+      user-select: none;
     }
-    .btn:hover{background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16);}
-    .btn:active{transform: translateY(1px);}
-    .btn.primary{
-      border-color: rgba(96,165,250,.38);
-      background: linear-gradient(180deg, rgba(96,165,250,.22), rgba(96,165,250,.10));
-      box-shadow: 0 16px 35px rgba(96,165,250,.15);
+
+    .btn:hover {
+      background: rgba(255, 255, 255, .06);
+      border-color: rgba(255, 255, 255, .16);
     }
-    .btn.secondary{
-      border-color: rgba(52,211,153,.32);
-      background: linear-gradient(180deg, rgba(52,211,153,.16), rgba(52,211,153,.08));
+
+    .btn:active {
+      transform: translateY(1px);
     }
-    .hero{padding:56px 0 18px;}
-    .heroGrid{
-      display:grid;
+
+    .btn.primary {
+      border-color: rgba(96, 165, 250, .38);
+      background: linear-gradient(180deg, rgba(96, 165, 250, .22), rgba(96, 165, 250, .10));
+      box-shadow: 0 16px 35px rgba(96, 165, 250, .15);
+    }
+
+    .btn.secondary {
+      border-color: rgba(52, 211, 153, .32);
+      background: linear-gradient(180deg, rgba(52, 211, 153, .16), rgba(52, 211, 153, .08));
+    }
+
+    .hero {
+      padding: 56px 0 18px;
+    }
+
+    .heroGrid {
+      display: grid;
       grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:stretch;
+      gap: 22px;
+      align-items: stretch;
     }
-    @media (max-width: 920px){
-      .heroGrid{grid-template-columns:1fr;}
-      .navlinks{display:none;}
+
+    @media (max-width: 920px) {
+      .heroGrid {
+        grid-template-columns: 1fr;
+      }
+
+      .navlinks {
+        display: none;
+      }
     }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:13px;
-      font-weight:800;
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .04);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
     }
-    h1{
-      margin:14px 0 10px;
-      font-size:44px;
-      line-height:1.12;
-      letter-spacing:-.02em;
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 44px;
+      line-height: 1.12;
+      letter-spacing: -.02em;
     }
-    @media (max-width:520px){ h1{font-size:36px;} }
-    .sub{
-      color:var(--muted);
-      font-size:16px;
-      max-width:60ch;
-      margin:0 0 18px;
-      font-weight:650;
+
+    @media (max-width:520px) {
+      h1 {
+        font-size: 36px;
+      }
     }
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 14px;}
-    .checks{
-      display:grid;
+
+    .sub {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 60ch;
+      margin: 0 0 18px;
+      font-weight: 650;
+    }
+
+    .ctaRow {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 18px 0 14px;
+    }
+
+    .checks {
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap:10px 16px;
-      margin:18px 0 0;
-      color:var(--muted);
-      font-weight:700;
-      font-size:14px;
+      gap: 10px 16px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
     }
-    .checkItem{display:flex; gap:10px; align-items:flex-start;}
-    .dot{
-      width:18px; height:18px;
-      border-radius:6px;
-      background: rgba(52,211,153,.15);
-      border:1px solid rgba(52,211,153,.28);
-      display:inline-flex; align-items:center; justify-content:center;
-      flex:0 0 auto;
-      margin-top:1px;
+
+    .checkItem {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
     }
-    .dot svg{width:12px; height:12px; fill: rgba(52,211,153,1);}
-    .card{
-      border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      background: rgba(52, 211, 153, .15);
+      border: 1px solid rgba(52, 211, 153, .28);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    .dot svg {
+      width: 12px;
+      height: 12px;
+      fill: rgba(52, 211, 153, 1);
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding:18px;
+      padding: 18px;
     }
-    .demoCard{
-      display:flex; flex-direction:column; gap:12px;
-      background: linear-gradient(180deg, rgba(17,24,39,.8), rgba(15,23,42,.65));
-    }
-    .miniTitle{color:var(--muted); font-weight:900; font-size:12px; letter-spacing:.12em; text-transform:uppercase;}
-    .kpi{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .k{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius:14px;
-      padding:12px;
-      min-height:72px;
-    }
-    .k strong{display:block; font-size:22px; letter-spacing:-.02em;}
-    .k span{color:var(--muted); font-size:13px; font-weight:700;}
-    .flow{
-      border:1px dashed rgba(255,255,255,.18);
-      border-radius:14px;
-      padding:12px;
-      background: rgba(255,255,255,.02);
-    }
-    .flow ul{margin:8px 0 0; padding-left:16px; color:var(--muted); font-weight:700;}
-    .section{padding:26px 0;}
-    .section h2{margin:0 0 10px; font-size:26px; letter-spacing:-.01em;}
-    .section p{color:var(--muted); margin:0 0 14px; font-weight:650;}
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    @media (max-width:920px){ .grid3{grid-template-columns:1fr;} }
-    .feat{
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      padding:16px;
-      background: rgba(255,255,255,.03);
-    }
-    .feat h3{margin:0 0 6px; font-size:16px;}
-    .feat p{margin:0; color:var(--muted); font-size:14px; font-weight:650;}
-    .how{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:12px;
-    }
-    @media (max-width:920px){ .how{grid-template-columns:1fr 1fr;} }
-    @media (max-width:520px){ .how{grid-template-columns:1fr;} }
-    .step{
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      padding:14px;
-      background: rgba(255,255,255,.03);
-      min-height:112px;
-    }
-    .step .num{
-      width:34px;height:34px;border-radius:12px;
-      background: rgba(96,165,250,.12);
-      border:1px solid rgba(96,165,250,.22);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:900;
-      margin-bottom:8px;
-    }
-    .step h4{margin:0 0 6px;font-size:15px;}
-    .step p{margin:0;color:var(--muted);font-size:13.5px; font-weight:650;}
-    details{
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.03);
-      padding:12px 14px;
-    }
-    summary{cursor:pointer; font-weight:900; list-style:none;}
-    summary::-webkit-details-marker{display:none;}
-    details p{margin:8px 0 0; color:var(--muted); font-weight:650; font-size:14px;}
 
-    .footer{
-      border-top:1px solid var(--border);
-      padding:22px 0;
-      color:var(--muted);
-      font-weight:650;
-      font-size:13px;
+    .demoCard {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: linear-gradient(180deg, rgba(17, 24, 39, .8), rgba(15, 23, 42, .65));
     }
-    .footGrid{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;}
-    .footGrid a{color:var(--muted); text-decoration:underline; text-underline-offset:3px;}
+
+    .miniTitle {
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .k {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .03);
+      border-radius: 14px;
+      padding: 12px;
+      min-height: 72px;
+    }
+
+    .k strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+
+    .k span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .flow {
+      border: 1px dashed rgba(255, 255, 255, .18);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .flow ul {
+      margin: 8px 0 0;
+      padding-left: 16px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 26px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: -.01em;
+    }
+
+    .section p {
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-weight: 650;
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width:920px) {
+      .grid3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feat {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, .03);
+    }
+
+    .feat h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .feat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .how {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width:920px) {
+      .how {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width:520px) {
+      .how {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: rgba(255, 255, 255, .03);
+      min-height: 112px;
+    }
+
+    .step .num {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: rgba(96, 165, 250, .12);
+      border: 1px solid rgba(96, 165, 250, .22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .step h4 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 650;
+    }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .03);
+      padding: 12px 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 14px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    .footGrid {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footGrid a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   </style>
 </head>
 
@@ -278,7 +511,9 @@ Privacy is now a separate page: /privacy.html
       <div class="nav">
         <a class="brand" href="/">
           <img class="navLogo" src="/assets/og-xl2web.png?v=1" alt="XL2Web" width="28" height="28" />
-          <span>XL2Web</span>
+          <span class="brandText">
+            <span class="xl">XL</span><span class="two">2</span><span class="web">Web</span>
+          </span>
         </a>
         <nav class="navlinks" aria-label="Primary">
           <a href="#features">Features</a>
@@ -290,7 +525,8 @@ Privacy is now a separate page: /privacy.html
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a class="btn" href="/docs.html">Documentation</a>
           <!-- Replace with your real Chrome Web Store listing URL when available -->
-          <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add to Chrome</a>
+          <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add to
+            Chrome</a>
         </div>
       </div>
     </div>
@@ -308,32 +544,41 @@ Privacy is now a separate page: /privacy.html
               Configure once, reuse across rows, and stop repetitive typing.
             </p>
             <div class="ctaRow">
-              <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to Chrome</a>
+              <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web
+                to Chrome</a>
               <a class="btn secondary" href="/docs.html">View Documentation</a>
             </div>
 
             <div class="checks" aria-label="Highlights">
               <div class="checkItem">
                 <span class="dot" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
                 </span>
                 Works with most web forms
               </div>
               <div class="checkItem">
                 <span class="dot" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
                 </span>
                 Multi-page flows supported
               </div>
               <div class="checkItem">
                 <span class="dot" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
                 </span>
                 Excel & CSV compatible
               </div>
               <div class="checkItem">
                 <span class="dot" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
                 </span>
                 Import / export setups
               </div>
@@ -384,7 +629,8 @@ Privacy is now a separate page: /privacy.html
     <section id="features" class="section">
       <div class="wrap">
         <h2>Built for real workflows</h2>
-        <p>Fill web forms faster with a simple click-to-configure setup. Handles multi-step pages, dynamic fields, and repeatable submissions.</p>
+        <p>Fill web forms faster with a simple click-to-configure setup. Handles multi-step pages, dynamic fields, and
+          repeatable submissions.</p>
 
         <div class="grid3">
           <div class="feat">
@@ -435,7 +681,8 @@ Privacy is now a separate page: /privacy.html
           <div class="step">
             <div class="num">3</div>
             <h4>Select form fields</h4>
-            <p>Click fields on the website to capture selectors. Configure actions like dropdowns, buttons, and waits.</p>
+            <p>Click fields on the website to capture selectors. Configure actions like dropdowns, buttons, and waits.
+            </p>
           </div>
           <div class="step">
             <div class="num">4</div>
@@ -445,7 +692,8 @@ Privacy is now a separate page: /privacy.html
         </div>
 
         <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to Chrome</a>
+          <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to
+            Chrome</a>
           <a class="btn" href="/docs.html">Read the docs</a>
           <a class="btn" href="/privacy.html">Privacy</a>
         </div>
@@ -460,15 +708,18 @@ Privacy is now a separate page: /privacy.html
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
           <details>
             <summary>Does XL2Web work on any website?</summary>
-            <p>XL2Web works with most standard web forms. Highly dynamic pages may require wait steps or re-selecting fields if the site changes.</p>
+            <p>XL2Web works with most standard web forms. Highly dynamic pages may require wait steps or re-selecting
+              fields if the site changes.</p>
           </details>
           <details>
             <summary>Is my spreadsheet uploaded anywhere?</summary>
-            <p>Your spreadsheet is processed in your browser. XL2Web does not upload your file to a server by default.</p>
+            <p>Your spreadsheet is processed in your browser. XL2Web does not upload your file to a server by default.
+            </p>
           </details>
           <details>
             <summary>Can it handle multi-page forms?</summary>
-            <p>Yes. Configure multiple pages for a website and fill them step-by-step using manual fill or Auto-fill on navigation.</p>
+            <p>Yes. Configure multiple pages for a website and fill them step-by-step using manual fill or Auto-fill on
+              navigation.</p>
           </details>
           <details>
             <summary>Do I need coding knowledge?</summary>
@@ -480,14 +731,18 @@ Privacy is now a separate page: /privacy.html
 
     <section class="section">
       <div class="wrap">
-        <div class="card" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center;">
+        <div class="card"
+          style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center;">
           <div>
             <div class="miniTitle">Ready to stop manual typing?</div>
-            <div style="font-size:20px; font-weight:900; margin-top:6px;">Automate your spreadsheet-to-form workflow with XL2Web.</div>
-            <div style="color:var(--muted); font-weight:650; margin-top:6px;">Install in seconds. Configure once. Fill faster.</div>
+            <div style="font-size:20px; font-weight:900; margin-top:6px;">Automate your spreadsheet-to-form workflow
+              with XL2Web.</div>
+            <div style="color:var(--muted); font-weight:650; margin-top:6px;">Install in seconds. Configure once. Fill
+              faster.</div>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web to Chrome</a>
+            <a class="btn primary" href="https://chromewebstore.google.com/" rel="noopener" target="_blank">Add XL2Web
+              to Chrome</a>
             <a class="btn" href="/docs.html">Documentation</a>
             <a class="btn" href="/privacy.html">Privacy</a>
           </div>
@@ -514,4 +769,5 @@ Privacy is now a separate page: /privacy.html
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>

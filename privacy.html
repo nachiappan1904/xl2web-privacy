@@ -8,11 +8,13 @@ This is your original privacy page with minimal updates:
 ========================= -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XL2Web – Privacy Policy</title>
-  <meta name="description" content="XL2Web Privacy Policy. XL2Web does not collect or transmit personal data. Data stays locally in your browser." />
+  <meta name="description"
+    content="XL2Web Privacy Policy. XL2Web does not collect or transmit personal data. Data stays locally in your browser." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://xl2web.com/privacy.html" />
   <link rel="icon" href="/favicon.ico" />
@@ -57,17 +59,41 @@ This is your original privacy page with minimal updates:
     }
 
     /* PRIVACY HERO LOGO */
-.privacyHeroLogo{
-  width:min(420px, 92vw);
-  height:auto;
-  display:block;
-  margin: 10px auto 18px;
-  border-radius:22px;
-  object-fit:cover;
-  background:#fff;
-  border:1px solid rgba(17,24,39,.12);
-  box-shadow: 0 18px 45px rgba(0,0,0,.12);
-}
+    .privacyHeroLogo {
+      width: min(420px, 92vw);
+      height: auto;
+      display: block;
+      margin: 10px auto 18px;
+      border-radius: 22px;
+      object-fit: cover;
+      background: #fff;
+      border: 1px solid rgba(17, 24, 39, .12);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .12);
+    }
+
+    /* ===== XL2Web brand wordmark ===== */
+    .brandText {
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    /* XL → green (from logo) */
+    .brandText .xl {
+      color: #22c55e;
+      /* rich green */
+    }
+
+    /* 2 → lightning gold */
+    .brandText .two {
+      color: #f59e0b;
+      /* golden */
+    }
+
+    /* Web → blue */
+    .brandText .web {
+      color: #3b82f6;
+      /* brand blue */
+    }
 
     .links a {
       display: inline-block;
@@ -90,7 +116,7 @@ This is your original privacy page with minimal updates:
       background: var(--card);
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
       border: 1px solid var(--border);
     }
 
@@ -147,7 +173,9 @@ This is your original privacy page with minimal updates:
   <div class="topbar">
     <a class="brand" href="/">
       <img class="privacyHeroLogo" src="/assets/og-xl2web.png?v=1" alt="XL2Web" />
-      <span>XL2Web</span>
+      <span class="brandText">
+        <span class="xl">XL</span><span class="two">2</span><span class="web">Web</span>
+      </span>
     </a>
     <div class="links">
       <a href="/">Home</a>
@@ -225,4 +253,5 @@ This is your original privacy page with minimal updates:
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
